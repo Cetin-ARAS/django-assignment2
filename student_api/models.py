@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class Category(models.Model):
     id = models.IntegerField(blank=True, null=True)
      
@@ -10,7 +9,7 @@ class Category(models.Model):
 class Post(models.Model):  
     category = models.ForeignKey(
         Category, related_name='students', on_delete=models.CASCADE)
-    title = models.CharField(max_length=30)
+    title = models.TextField()
     content = models.CharField(max_length=30)
     cotegory_id = models.IntegerField(blank=True, null=True)
     status = models.BooleanField(default=False)
