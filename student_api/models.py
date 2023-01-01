@@ -1,7 +1,7 @@
 from django.db import models
 
 class Category(models.Model):
-    id = models.IntegerField(blank=True, null=True)
+    id = models.IntegerField(primary_key=True, blank=True, null=False)
      
     def __str__(self):
         return f"{self.id}"
@@ -17,4 +17,4 @@ class Post(models.Model):
     updated_date = models.DateTimeField(auto_now=True)
     
     def __str__(self):
-        return f"{self.number}-{self.last_name} {self.first_name}"
+        return f"{self.title} {self.content}"
