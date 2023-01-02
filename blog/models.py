@@ -1,20 +1,18 @@
 from django.db import models
 
 class Category(models.Model):
-    id = models.IntegerField(primary_key=True, blank=True, null=False)
+    name = models.CharField(max_length=30, unique=True)
      
     def __str__(self):
-        return f"{self.id}"
+        return self.name
 
-class Post(models.Model):  
-    category = models.ForeignKey(
-        Category, related_name='students', on_delete=models.CASCADE)
-    title = models.TextField()
-    content = models.CharField(max_length=30)
-    cotegory_id = models.IntegerField(blank=True, null=True)
-    status = models.BooleanField(default=False)
+class Blog(models.Model):  
+    title = models.CharField(max_length=120, unique=True)
+    content = models.TextField(blank=True)
+    category = models.ForeignKey(  Category, on_delete=models.PROTECT)
+    is_published = models.BooleanField(default=False)
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
     
     def __str__(self):
-        return f"{self.title} {self.content}"
+        return self.title
